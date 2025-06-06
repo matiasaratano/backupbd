@@ -2,17 +2,6 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
-// Inicializar Firebase Admin lo antes posible para asegurar que Firestore esté listo
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-  console.log('✅ Firebase Admin inicializado correctamente');
-}
-
-// Obtener referencia a Firestore después de la inicialización
-const db = admin.firestore();
-
 // Función para obtener variable de entorno y validar que exista
 function getEnvVar(name) {
   const val = process.env[name];
@@ -53,7 +42,7 @@ const serviceAccount = {
   universe_domain: getEnvVar('universe_domain'),
 };
 
-// Inicializar Firebase Admin lo antes posible para asegurar que Firestore esté listo
+// Inicializar Firebase Admin lo antes posible
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -61,7 +50,7 @@ if (!admin.apps.length) {
   console.log('✅ Firebase Admin inicializado correctamente');
 }
 
-// Obtener referencia a Firestore después de la inicialización
+// Obtener referencia a Firestore (solo una vez)
 const db = admin.firestore();
 
 async function backupFirestore() {
