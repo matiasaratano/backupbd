@@ -2,12 +2,21 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
+// Función para obtener variable de entorno y validar que exista
+function getEnvVar(name) {
+  const val = process.env[name];
+  if (!val) {
+    throw new Error(`La variable de entorno ${name} no está definida`);
+  }
+  return val;
+}
+
 // Configuración del service account desde variables de entorno
 const serviceAccount = {
   type: getEnvVar('type'),
   project_id: getEnvVar('project_id'),
   private_key_id: getEnvVar('private_key_id'),
-  private_key: getEnvVar('private_key').replace(/\\n/g, '\n'),
+  private_key: getEnvVar('private_key').replace(/\\n/g, '\n'), // reemplaza \n por saltos de línea reales
   client_email: getEnvVar('client_email'),
   client_id: getEnvVar('client_id'),
   auth_uri: getEnvVar('auth_uri'),
