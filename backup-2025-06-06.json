@@ -1,0 +1,194 @@
+{
+  "cursos": [
+    {
+      "id": "amasando_la_masa_st",
+      "nombre": "Amasando la masa",
+      "instructor": "Adrian Gonzalez",
+      "dias": [
+        "Sábado Tarde"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 4
+    },
+    {
+      "id": "amasando_la_masa_vt",
+      "nombre": "Amasando la masa",
+      "instructor": "Adrian Gonzalez",
+      "dias": [
+        "Viernes Tarde"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 4
+    },
+    {
+      "id": "calcos_digitales",
+      "nombre": "Calcos Digitales",
+      "instructor": "Teresita Capurro",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Mañana",
+        "Domingo Mañana"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 5
+    },
+    {
+      "id": "cuerda_seca",
+      "cupoMaximo": 5,
+      "instructor": "Anahí Roth",
+      "dias": [
+        "Viernes Tarde",
+        "Domingo Mañana"
+      ],
+      "nombre": "Cuerda Seca",
+      "disponibles": 5
+    },
+    {
+      "id": "de_a_dos_sm",
+      "cupoMaximo": 5,
+      "instructor": "Maximiliano Abiatti",
+      "dias": [
+        "Sábado Mañana",
+        "Domingo Mañana"
+      ],
+      "nombre": "De a dos",
+      "disponibles": 5
+    },
+    {
+      "id": "de_a_dos_vtst",
+      "cupoMaximo": 5,
+      "instructor": "Maximiliano Abiatti",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Tarde"
+      ],
+      "nombre": "De a dos",
+      "disponibles": 5
+    },
+    {
+      "id": "esmaltes_alta_temperatura",
+      "cupoMaximo": 5,
+      "instructor": "Carlos Leporace",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Mañana",
+        "Sábado Tarde",
+        "Domingo Mañana"
+      ],
+      "nombre": "Esmaltes de alta temperatura, una experiencia que vale la pena vivir",
+      "disponibles": 5
+    },
+    {
+      "id": "gaudi_mosaico",
+      "nombre": "Introducción al mundo de Gaudi, el mosaico en su forma orgánica",
+      "instructor": "Magdalena Serna",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Mañana",
+        "Sábado Tarde",
+        "Domingo Mañana"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 5
+    },
+    {
+      "id": "microcristalizaciones",
+      "cupoMaximo": 5,
+      "instructor": "Fabiana Sacnun",
+      "dias": [
+        "Viernes Tarde",
+        "Domingo Mañana"
+      ],
+      "nombre": "Microcristalizaciones en esmaltes de alta temperatura",
+      "disponibles": 5
+    },
+    {
+      "id": "taller_engobes_sm",
+      "nombre": "Taller de engobes",
+      "instructor": "Marta Harispe",
+      "dias": [
+        "Sábado Mañana",
+        "Domingo Mañana"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 4
+    },
+    {
+      "id": "taller_engobes_vts",
+      "nombre": "Taller de engobes",
+      "instructor": "Marta Harispe",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Tarde"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 5
+    },
+    {
+      "id": "taller_identidad_visual",
+      "nombre": "Taller de identidad visual en la producción \"Una gran familia...\"",
+      "instructor": "Paula Cousiño",
+      "dias": [
+        "Viernes Tarde",
+        "Sábado Mañana",
+        "Sábado Tarde",
+        "Domingo Mañana"
+      ],
+      "cupoMaximo": 5,
+      "disponibles": 5
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": "Iasy0Qskftlewas48lKx",
+      "fullName": "a",
+      "email": "a@a",
+      "dni": "a",
+      "phone": "a",
+      "delegation": "a",
+      "foreigner": false,
+      "provinceCity": "a",
+      "vegetarian": false,
+      "accommodation": false,
+      "course": "taller_engobes_sm",
+      "timestamp": {
+        "_seconds": 1748987427,
+        "_nanoseconds": 206000000
+      }
+    },
+    {
+      "id": "MsWW5DeLmXZbDThFWpqm",
+      "fullName": "a",
+      "email": "a@a",
+      "dni": "a",
+      "phone": "a",
+      "delegation": "a",
+      "foreigner": false,
+      "provinceCity": "a",
+      "vegetarian": false,
+      "accommodation": false,
+      "course": "amasando_la_masa_vt",
+      "timestamp": {
+        "_seconds": 1748987220,
+        "_nanoseconds": 728000000
+      }
+    },
+    {
+      "id": "QoHK05p6igHFWLOnkKkh",
+      "fullName": "a",
+      "email": "a@a",
+      "dni": "a",
+      "phone": "a",
+      "delegation": "a",
+      "foreigner": false,
+      "provinceCity": "a",
+      "vegetarian": false,
+      "accommodation": false,
+      "course": "amasando_la_masa_st",
+      "timestamp": {
+        "_seconds": 1748987200,
+        "_nanoseconds": 4000000
+      }
+    }
+  ]
+}
