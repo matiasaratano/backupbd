@@ -2,6 +2,17 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
+// Inicializar Firebase Admin lo antes posible para asegurar que Firestore esté listo
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+  console.log('✅ Firebase Admin inicializado correctamente');
+}
+
+// Obtener referencia a Firestore después de la inicialización
+const db = admin.firestore();
+
 // Función para obtener variable de entorno y validar que exista
 function getEnvVar(name) {
   const val = process.env[name];
@@ -11,7 +22,7 @@ function getEnvVar(name) {
   return val;
 }
 
-
+// Cargar y mostrar variables de entorno para depuración
 console.log('Variables de entorno cargadas:');
 console.log({
   type: process.env.type,
@@ -27,6 +38,7 @@ console.log({
   universe_domain: process.env.universe_domain,
 });
 
+// Configurar credenciales de Firebase
 const serviceAccount = {
   type: getEnvVar('type'),
   project_id: getEnvVar('project_id'),
@@ -41,52 +53,53 @@ const serviceAccount = {
   universe_domain: getEnvVar('universe_domain'),
 };
 
-const admin = require('firebase-admin');
+// Inicializar Firebase Admin lo antes posible para asegurar que Firestore esté listo
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+  console.log('✅ Firebase Admin inicializado correctamente');
+}
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-
-const db = admin.firestore();
-
-// resto de tu código...
-
-
-// Inicializa Firebase
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-
+// Obtener referencia a Firestore después de la inicialización
 const db = admin.firestore();
 
 async function backupFirestore() {
-  const collections = await db.listCollections();
-  const backup = {};
+  try {
+    // Obtener todas las colecciones
+    const collections = await db.listCollections();
+    const backup = {};
 
-  for (const col of collections) {
-    const snapshot = await col.get();
-    backup[col.id] = [];
+    // Iterar sobre las colecciones y guardar los documentos
+    for (const col of collections) {
+      const snapshot = await col.get();
+      backup[col.id] = [];
 
-    snapshot.forEach(doc => {
-      backup[col.id].push({ id: doc.id, ...doc.data() });
-    });
+      snapshot.forEach(doc => {
+        backup[col.id].push({ id: doc.id, ...doc.data() });
+      });
+    }
+
+    // Generar nombre de archivo con fecha actual (YYYY-MM-DD)
+    const now = new Date();
+    const dateString = now.toISOString().slice(0, 10);
+
+    // Crear carpeta de backups
+    const folderPath = path.join(__dirname, 'backups', dateString);
+    fs.mkdirSync(folderPath, { recursive: true });
+
+    // Guardar el backup en un archivo JSON
+    const filePath = path.join(folderPath, `backup-${dateString}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(backup, null, 2));
+    console.log(`✅ Backup generado: ${filePath}`);
+  } catch (err) {
+    console.error('❌ Error al hacer el backup:', err);
+    throw err; // Re-lanzar el error para que Railway lo detecte
   }
-
-  // Fecha actual
-  const now = new Date();
-  const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
-
-  // Carpeta destino: ./backups/YYYY-MM-DD/
-  const folderPath = path.join(__dirname, 'backups', dateString);
-  fs.mkdirSync(folderPath, { recursive: true });
-
-  // Guardar archivo
-  const filePath = path.join(folderPath, `backup-${dateString}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(backup, null, 2));
-  console.log(`✅ Backup generado: ${filePath}`);
 }
 
-// Ejecutar la función
+// Ejecutar la función de backup
 backupFirestore().catch(err => {
-  console.error("❌ Error al hacer el backup:", err);
+  console.error('❌ Error en la ejecución del backup:', err);
+  process.exit(1); // Salir con error para que Railway marque el despliegue como fallido
 });
